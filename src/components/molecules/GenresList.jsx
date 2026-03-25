@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { FilterContext } from "../../contexts/FilterContext";
+import { SidebarContext } from "../../contexts/SidebarContext";
 import { useApiData } from "../../hooks/useApiData";
 import { UlContainerCenter } from "../atoms/UlContainer";
-import { SidebarContext } from "../../contexts/SidebarContext";
 
-const AuthorsList = () => {
-  const { authors = [], isLoading, error } = useApiData();
+const GenresList = () => {
+  const { genres = [], isLoading, error } = useApiData();
   const { setFilters } = useContext(FilterContext);
   const { setIsSidebarOpen } = useContext(SidebarContext);
 
@@ -13,30 +13,28 @@ const AuthorsList = () => {
     <UlContainerCenter className="p-2 gap-4 text-neutral-400 text-sm">
       {isLoading && <li>Cargando...</li>}
       {error && <li>Error</li>}
-      {!isLoading && !error && authors.length === 0 && <li>No hay autores</li>}
+      {!isLoading && !error && genres.length === 0 && <li>No hay géneros</li>}
 
-      {authors.map((author) => (
+      {genres.map((genre) => (
         <li
           className="w-full"
-          key={author.id}
+          key={genre.id}
           onClick={() => {
             (setFilters((prev) => {
-              if (prev.author === author.id) {
+              if (prev.genre === genre.id) {
                 return { author: null, genre: null, search: "" };
               }
 
-              return { author: author.id, genre: null, search: "" };
+              return { author: null, genre: genre.id, search: "" };
             }),
               setIsSidebarOpen(false));
           }}
         >
-          <h3>
-            {author.name} {author.lastname}
-          </h3>
+          <h3>{genre.name}</h3>
         </li>
       ))}
     </UlContainerCenter>
   );
 };
 
-export default AuthorsList;
+export default GenresList;

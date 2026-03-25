@@ -19,3 +19,14 @@ export const LiContainer = ({ children, className = "", ...props }) => {
     </li>
   );
 };
+
+export const UlContainerGrid = ({ children, className = "", ...props }) => {
+  return (
+    <ul
+      className={`grid grid-cols-3 items-center place-items-center gap-1 ${className}`}
+      {...props}
+    >
+      {children}
+    </ul>
+  );
+};

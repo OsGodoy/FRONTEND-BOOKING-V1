@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 import Header from "../organisms/Header";
 import Footer from "../organisms/Footer";
-import Sidebar from "../organisms/Sidebar";
-import SearchModal from "../organisms/SearchModal";
+import Sidebar from "../organisms/Sidebar/Sidebar";
+import SearchModal from "../organisms/Modal/SearchModal";
 
 const MainLayout = () => {
   return (

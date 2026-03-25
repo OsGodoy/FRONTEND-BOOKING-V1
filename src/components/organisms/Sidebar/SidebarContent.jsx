@@ -1,8 +1,10 @@
 import { ChevronDown } from "lucide-react";
-import { LiContainer, UlContainerCenter } from "../atoms/UlContainer";
+import { LiContainer, UlContainerCenter } from "../../atoms/UlContainer";
 import { useContext, useEffect, useState } from "react";
-import AuthorsList from "../molecules/AuthorsList";
-import { SidebarContext } from "../../contexts/SidebarContext";
+import AuthorsList from "../../molecules/AuthorsList";
+import { SidebarContext } from "../../../contexts/SidebarContext";
+
+import GenresList from "../../molecules/GenresList";
 
 const SidebarContent = () => {
   const [isActive, setIsActive] = useState(null);
@@ -23,7 +25,7 @@ const SidebarContent = () => {
     {
       id: "genres",
       label: "Géneros",
-      content: <AuthorsList />,
+      content: <GenresList />,
     },
   ];
 
@@ -38,7 +40,11 @@ const SidebarContent = () => {
               onClick={() => setIsActive(isOpen ? null : item.id)}
               className="bg-neutral-900/40 flex"
             >
-              {item.label}
+              <h3
+                className={`transition-colors duration-300 ${isOpen && "text-purple-400"}`}
+              >
+                {item.label}
+              </h3>
               <ChevronDown
                 className={`stroke-1 text-purple-500 transition-transform duration-300
                 ${isOpen && "scale-y-[-1]"}`}

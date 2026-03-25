@@ -1,7 +1,14 @@
 import api from "./axios";
 
-export const getBooks = async () => {
-  const { data } = await api.get("/books");
+export const getBooks = async (filters = {}) => {
+  const params = new URLSearchParams();
+
+  if (filters.author) params.append("author", filters.author);
+  if (filters.genre) params.append("genre", filters.genre);
+  if (filters.search) params.append("search", filters.search);
+
+  const { data } = await api.get(`/books?${params.toString()}`);
+
   return data.data.books;
 };
 

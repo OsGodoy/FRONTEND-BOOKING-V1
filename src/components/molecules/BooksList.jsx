@@ -3,9 +3,12 @@ import BookCard from "../molecules/BookCard";
 import Loading from "../atoms/Loading";
 import { DivContainerGrid } from "../atoms/DivContainer";
 import ErrorPage from "../atoms/ErrorPage";
+import { useContext } from "react";
+import { FilterContext } from "../../contexts/FilterContext";
 
 const BooksList = () => {
-  const { books, isLoading, error } = useApiData();
+  const { filters } = useContext(FilterContext);
+  const { books, isLoading, error } = useApiData(filters);
 
   if (isLoading) return <Loading />;
   if (error) return <ErrorPage />;

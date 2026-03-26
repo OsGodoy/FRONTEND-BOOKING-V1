@@ -4,7 +4,7 @@ import FilterInfo from "../components/molecules/FilterInfo";
 
 const HomePage = () => {
   return (
-    <DivContainerCenter>
+    <DivContainerCenter className="justify-start">
       <FilterInfo />
       <BooksList />
     </DivContainerCenter>

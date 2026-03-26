@@ -9,9 +9,9 @@ const FilterProvider = ({ children }) => {
     search: "",
   };
 
-  const [filters, setFilters] = useState(initialState);
+  const [isFilters, setIsFilters] = useState(initialState);
 
-  const values = { initialState, filters, setFilters };
+  const values = { initialState, isFilters, setIsFilters };
 
   return (
     <FilterContext.Provider value={values}>{children}</FilterContext.Provider>

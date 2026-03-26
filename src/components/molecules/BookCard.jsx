@@ -11,7 +11,7 @@ const BookCard = ({ book }) => {
             <img src={book.cover} alt={book.title} />
           ) : (
             <DivContainerCenter>
-              <ImageOff className="text-neutral-600 size-12 stroke-1" />
+              <ImageOff className="text-neutral-700 size-12 stroke-1" />
             </DivContainerCenter>
           )}
         </Card.Header>

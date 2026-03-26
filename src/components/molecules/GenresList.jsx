@@ -6,7 +6,7 @@ import { UlContainerCenter } from "../atoms/UlContainer";
 
 const GenresList = () => {
   const { genres = [], isLoading, error } = useApiData();
-  const { setFilters } = useContext(FilterContext);
+  const { setIsFilters } = useContext(FilterContext);
   const { setIsSidebarOpen } = useContext(SidebarContext);
 
   return (
@@ -20,7 +20,7 @@ const GenresList = () => {
           className="w-full"
           key={genre.id}
           onClick={() => {
-            (setFilters((prev) => {
+            (setIsFilters((prev) => {
               if (prev.genre === genre.id) {
                 return { author: null, genre: null, search: "" };
               }

@@ -5,7 +5,7 @@ import { FilterContext } from "../../../contexts/FilterContext";
 import { SearchModalContext } from "../../../contexts/SearchModalContext";
 
 const SearchModalContent = () => {
-  const { setFilters } = useContext(FilterContext);
+  const { setIsFilters } = useContext(FilterContext);
   const { setIsSearchModalOpen } = useContext(SearchModalContext);
 
   const {
@@ -42,7 +42,7 @@ const SearchModalContent = () => {
           key={`${item.type}-${item.id}`}
           className="text-purple-400 text-xs w-fit border px-2 py-1 rounded leading-3.5"
           onClick={() => {
-            setFilters(() => {
+            setIsFilters(() => {
               if (item.type === "author") {
                 return { author: item.id, genre: null, search: "" };
               }

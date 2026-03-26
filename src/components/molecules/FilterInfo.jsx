@@ -1,10 +1,43 @@
 import { useContext } from "react";
 import { FilterContext } from "../../contexts/FilterContext";
+import { DivContainerStart } from "../atoms/DivContainer";
+import { useApiData } from "../../hooks/useApiData";
+import { CircleX } from "lucide-react";
 
 const FilterInfo = () => {
-  const { initialState, filters, setFilters } = useContext(FilterContext);
+  const { initialState, isFilters, setIsFilters } = useContext(FilterContext);
+  const { authors, genres } = useApiData();
 
-  return <>FilterInfo</>;
+  const isFiltered =
+    isFilters.author !== null ||
+    isFilters.genre !== null ||
+    isFilters.search !== "";
+
+  if (!isFiltered) return null;
+
+  const selectedAuthor = authors.find((a) => a.id === isFilters.author);
+
+  const selectedGenre = genres.find((g) => g.id === isFilters.genre);
+
+  return (
+    <DivContainerStart className="px-4 pb-3">
+      <div className="text-xs text-amber-400 bg-amber-400/10 border border-amber-400/40 p-1 rounded flex items-center justify-center gap-1">
+        {selectedAuthor && (
+          <span>
+            Autor: {selectedAuthor.name} {selectedAuthor.lastname}
+          </span>
+        )}
+        {selectedGenre && <span>Género: {selectedGenre.name}</span>}
+        {isFilters.search && <span>Búsqueda: {isFilters.search}</span>}
+        <CircleX
+          onClick={() => {
+            setIsFilters(initialState);
+          }}
+          className="size-4 stroke-[1.5]"
+        />
+      </div>
+    </DivContainerStart>
+  );
 };
 
 export default FilterInfo;

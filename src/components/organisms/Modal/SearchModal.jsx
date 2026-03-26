@@ -8,7 +8,7 @@ import SearchModalContent from "./SearchModalContent";
 import { FilterContext } from "../../../contexts/FilterContext";
 
 const SearchModal = () => {
-  const { setFilters } = useContext(FilterContext);
+  const { setIsFilters } = useContext(FilterContext);
   const { isSearchModalOpen, setIsSearchModalOpen } =
     useContext(SearchModalContext);
 
@@ -29,7 +29,7 @@ const SearchModal = () => {
           <section className="flex items-center justify-between w-full pb-3 border-b border-neutral-700">
             <input
               onChange={(e) =>
-                setFilters((prev) => ({
+                setIsFilters((prev) => ({
                   ...prev,
                   search: e.target.value,
                 }))

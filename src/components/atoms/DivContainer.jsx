@@ -12,7 +12,7 @@ export const DivContainerCenter = ({ children, className = "", ...props }) => {
 export const DivContainerStart = ({ children, className = "", ...props }) => {
   return (
     <div
-      className={`flex flex-col items-start justify-center ${className}`}
+      className={`flex flex-col items-start justify-center w-full ${className}`}
       {...props}
     >
       {children}

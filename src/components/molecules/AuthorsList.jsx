@@ -5,8 +5,8 @@ import { UlContainerCenter } from "../atoms/UlContainer";
 import { SidebarContext } from "../../contexts/SidebarContext";
 
 const AuthorsList = () => {
-  const { authors = [], isLoading, error } = useApiData();
-  const { setFilters } = useContext(FilterContext);
+  const { authors, isLoading, error } = useApiData();
+  const { setIsFilters } = useContext(FilterContext);
   const { setIsSidebarOpen } = useContext(SidebarContext);
 
   return (
@@ -20,7 +20,7 @@ const AuthorsList = () => {
           className="w-full"
           key={author.id}
           onClick={() => {
-            (setFilters((prev) => {
+            (setIsFilters((prev) => {
               if (prev.author === author.id) {
                 return { author: null, genre: null, search: "" };
               }

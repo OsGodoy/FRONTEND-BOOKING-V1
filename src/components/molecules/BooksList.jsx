@@ -7,8 +7,8 @@ import { useContext } from "react";
 import { FilterContext } from "../../contexts/FilterContext";
 
 const BooksList = () => {
-  const { filters } = useContext(FilterContext);
-  const { books, isLoading, error } = useApiData(filters);
+  const { isFilters } = useContext(FilterContext);
+  const { books, isLoading, error } = useApiData(isFilters);
 
   if (isLoading) return <Loading />;
   if (error) return <ErrorPage />;

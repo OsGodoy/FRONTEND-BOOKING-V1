@@ -40,7 +40,7 @@ const SearchModalContent = () => {
       {items.map((item) => (
         <li
           key={`${item.type}-${item.id}`}
-          className="text-purple-400 text-xs w-fit border px-2 py-1 rounded leading-3.5"
+          className="text-purple-500 text-xs w-fit border px-2 py-1 rounded leading-3.5"
           onClick={() => {
             setIsFilters(() => {
               if (item.type === "author") {

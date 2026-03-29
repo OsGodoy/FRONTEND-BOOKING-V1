@@ -1,4 +1,4 @@
-import { Crown, Menu, Search } from "lucide-react";
+import { Crown, Menu, Search, SquareUserRound } from "lucide-react";
 import { useContext } from "react";
 import { SidebarContext } from "../../contexts/SidebarContext";
 import { DivContainerCenter } from "../atoms/DivContainer";
@@ -21,18 +21,21 @@ const Header = () => {
           <Crown className="sm:size-8 text-amber-400 fill-amber-400" />
         </span>{" "}
       </Link>
-      <DivContainerCenter className="flex-row gap-2">
+      <DivContainerCenter className="flex-row gap-3 text-neutral-500">
+        <Link to={"/auth/login"}>
+          <SquareUserRound className="size-7 stroke-[1.5] text-purple-500" />
+        </Link>{" "}
         <Search
           onClick={() => {
             setIsSearchModalOpen(!isSearchModalOpen);
           }}
-          className="text-neutral-500 size-7 stroke-[1.5]"
+          className="size-7 stroke-[1.5]"
         />
         <Menu
           onClick={() => {
             setIsSidebarOpen(!isSidebarOpen);
           }}
-          className="text-neutral-500 size-7 stroke-[1.5]"
+          className="size-7 stroke-[1.5]"
         />
       </DivContainerCenter>
     </div>

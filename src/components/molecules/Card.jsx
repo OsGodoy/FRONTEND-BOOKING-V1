@@ -20,7 +20,7 @@ Card.Header = ({ children, className = "" }) => {
 
 Card.Content = ({ children, className = "" }) => {
   return (
-    <div className={`flex flex-col flex-1 p-3 w-full ${className}`}>
+    <div className={`flex flex-col flex-1 px-3 py-2 w-full ${className}`}>
       {children}
     </div>
   );
@@ -29,7 +29,7 @@ Card.Content = ({ children, className = "" }) => {
 Card.Footer = ({ children, className = "" }) => {
   return (
     <div
-      className={`flex flex-col flex-1 p-3 w-full border-t border-neutral-800 ${className}`}
+      className={`flex flex-col flex-1 pt-3 px-3 w-full border-t border-neutral-800 ${className}`}
     >
       {children}
     </div>

@@ -30,7 +30,7 @@ const SidebarContent = () => {
   ];
 
   return (
-    <UlContainerCenter className="text-neutral-300">
+    <UlContainerCenter className="text-neutral-400">
       {items.map((item) => {
         const isOpen = isActive === item.id;
 

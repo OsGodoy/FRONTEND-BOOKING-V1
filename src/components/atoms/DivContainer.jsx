@@ -30,3 +30,14 @@ export const DivContainerGrid = ({ children, className = "", ...props }) => {
     </div>
   );
 };
+
+export const DivContainerModal = ({ children, className = "", ...props }) => {
+  return (
+    <div
+      className={`flex items-center justify-center p-4 w-full sm:w-72 md:w-80 xl:w-72 2xl:w-80 bg-neutral-950 border rounded-xl border-neutral-800 ${className}`}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};

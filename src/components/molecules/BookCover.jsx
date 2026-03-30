@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Image, ImageOff } from "lucide-react";
+import api from "../../api/axios";
 
 const BookCover = ({ book }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,7 +23,7 @@ const BookCover = ({ book }) => {
       )}
 
       <img
-        src={book.cover}
+        src={`http://localhost:5001/image?url=${encodeURIComponent(book.cover)}`}
         alt={book.title}
         loading="lazy"
         decoding="async"

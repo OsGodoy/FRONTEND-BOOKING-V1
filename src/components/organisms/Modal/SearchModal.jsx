@@ -43,7 +43,7 @@ const SearchModal = () => {
   return (
     <RemoveScroll enabled={isSearchModalOpen}>
       <DivContainerCenter
-        className={`fixed inset-0 transition-opacity
+        className={`fixed inset-0 transition-opacity z-50
         ${isSearchModalOpen ? "pointer-events-auto duration-200" : "pointer-events-none duration-700"}
         `}
       >

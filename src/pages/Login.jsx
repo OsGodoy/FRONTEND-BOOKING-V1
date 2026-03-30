@@ -9,11 +9,22 @@ import {
   ButtonBorderAmber,
   ButtonBorderNeutral,
 } from "../components/atoms/Buttons";
+import {useLogin} from "../hooks/useAuthData"
 
 const LoginPage = () => {
+  const { mutate, isPending, error } = useLogin();
+
   const handleLogin = (data) => {
-    console.log("LOGIN", data);
+    mutate(data, {
+      onSuccess: () => {
+        console.log("Login exitoso");
+      },
+      onError: (err) => {
+        console.log(err.response?.data?.message);
+      },
+    });
   };
+
   return (
     <DivContainerCenter>
       <Link to="/" className="text-xs fixed top-5 left-5">

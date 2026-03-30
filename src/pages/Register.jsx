@@ -9,11 +9,19 @@ import {
   ButtonBorderPurple,
   ButtonBorderNeutral,
 } from "../components/atoms/Buttons";
+import { useRegister } from "../hooks/useAuthData";
 
 const RegisterPage = () => {
+  const { mutate, isPending, error } = useRegister();
+
   const handleRegister = (data) => {
-    console.log("REGISTER", data);
+    mutate(data, {
+      onSuccess: () => {
+        console.log("Usuario creado");
+      },
+    });
   };
+
   return (
     <DivContainerCenter>
       <Link to="/" className="text-xs fixed top-5 left-5">

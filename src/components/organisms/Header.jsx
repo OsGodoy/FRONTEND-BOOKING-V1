@@ -11,7 +11,7 @@ const Header = () => {
     useContext(SearchModalContext);
 
   return (
-    <div className="sticky top-0 w-full p-4 mb-4 flex items-center justify-center bg-neutral-900 border-b border-neutral-800">
+    <div className="sticky top-0 w-full p-4 mb-4 flex items-center justify-center bg-neutral-900 border-b border-neutral-800 z-40">
       <Link
         to="/"
         className="flex items-center justify-start w-full max-w-360 gap-1 text-2xl sm:text-4xl font-bold text-purple-500"

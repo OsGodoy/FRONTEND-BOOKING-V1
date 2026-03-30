@@ -4,6 +4,7 @@ import Footer from "../organisms/Footer";
 import Sidebar from "../organisms/Sidebar/Sidebar";
 import SearchModal from "../organisms/Modal/SearchModal";
 import LoaderPage from "../../pages/Loader";
+import ScrollToTopButton from "../../hooks/useScrollToTop";
 
 const MainLayout = () => {
   return (
@@ -16,6 +17,7 @@ const MainLayout = () => {
         <main className="flex-1 flex px-4">
           <Outlet />
         </main>
+        <ScrollToTopButton />
         <Footer />
       </div>
     </>

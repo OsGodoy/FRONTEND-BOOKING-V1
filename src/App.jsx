@@ -8,8 +8,16 @@ import LoginPage from "./pages/Login";
 import AuthLayout from "./components/templates/AuthLayout";
 import RegisterPage from "./pages/Register";
 import BookDetails from "./components/molecules/BookDetails";
+import { useEffect } from "react";
+import { useAuthStore } from "./store/authStore";
 
 function App() {
+  const getMe = useAuthStore((state) => state.getMe);
+
+  useEffect(() => {
+    getMe();
+  }, []);
+
   return (
     <FilterProvider>
       <SearchModalProvider>

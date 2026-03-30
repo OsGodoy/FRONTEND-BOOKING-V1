@@ -7,6 +7,7 @@ import { FilterProvider } from "./contexts/FilterContext";
 import LoginPage from "./pages/Login";
 import AuthLayout from "./components/templates/AuthLayout";
 import RegisterPage from "./pages/Register";
+import BookDetails from "./components/molecules/BookDetails";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route element={<MainLayout />}>
               <Route path="/" element={<HomePage />} />
+              <Route path="/books/:id" element={<BookDetails />} />
             </Route>
             <Route element={<AuthLayout />}>
               <Route path="/auth">

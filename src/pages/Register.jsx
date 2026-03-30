@@ -4,7 +4,11 @@ import {
   DivContainerModal,
 } from "../components/atoms/DivContainer";
 import AuthForm from "../components/molecules/AuthForm";
-import { Crown } from "lucide-react";
+import { ChevronsLeft, Crown } from "lucide-react";
+import {
+  ButtonBorderPurple,
+  ButtonBorderNeutral,
+} from "../components/atoms/Buttons";
 
 const RegisterPage = () => {
   const handleRegister = (data) => {
@@ -12,6 +16,14 @@ const RegisterPage = () => {
   };
   return (
     <DivContainerCenter>
+      <Link to="/" className="text-xs fixed top-5 left-5">
+        <ButtonBorderNeutral className="flex items-center justify-center ">
+          <span>
+            <ChevronsLeft className="size-4" />
+          </span>
+          Volver a la página de inicio
+        </ButtonBorderNeutral>
+      </Link>
       <Link
         to="/"
         className="flex items-center justify-center w-full gap-2 text-5xl font-bold text-purple-500 py-6"
@@ -26,11 +38,10 @@ const RegisterPage = () => {
       </DivContainerModal>
       <p className="mt-4 text-neutral-400 text-sm">
         ¿Ya no tienes cuenta?{" "}
-        <Link
-          to={"/auth/login"}
-          className="text-purple-400/90 border border-purple-400/90 rounded bg-purple-400/10 p-1 ml-1"
-        >
-          Iniciar sesión
+        <Link to={"/auth/login"}>
+          <ButtonBorderPurple className="ml-1">
+            Iniciar sesión
+          </ButtonBorderPurple>
         </Link>
       </p>
     </DivContainerCenter>

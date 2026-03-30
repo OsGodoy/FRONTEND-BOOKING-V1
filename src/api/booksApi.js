@@ -12,6 +12,11 @@ export const getBooks = async (filters = {}) => {
   return data.data.books;
 };
 
+export const getBookById = async (id) => {
+  const { data } = await api.get(`/books/${id}`);
+  return data.data.book;
+};
+
 export const createBook = async (book) => {
   const { data } = await api.post("/books", book);
   return data.data.books;

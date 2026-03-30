@@ -1,19 +1,14 @@
-import Card from "../molecules/Card";
-import { DivContainerCenter } from "../atoms/DivContainer";
-import { ImageOff } from "lucide-react";
+import { ButtonBorderPurple } from "../atoms/Buttons";
+import Card from "../atoms/Card";
+import { Link } from "react-router-dom";
+import BookCover from "./BookCover";
 
 const BookCard = ({ book }) => {
   return (
     book && (
       <Card className="text-neutral-400">
         <Card.Header>
-          {book.cover ? (
-            <img src={book.cover} alt={book.title} />
-          ) : (
-            <DivContainerCenter>
-              <ImageOff className="text-neutral-700 size-12 stroke-1" />
-            </DivContainerCenter>
-          )}
+          <BookCover book={book} />
         </Card.Header>
 
         <Card.Content>
@@ -32,7 +27,12 @@ const BookCard = ({ book }) => {
           </div>
         </Card.Content>
 
-        <Card.Footer>
+        <Card.Footer className="flex-row items-center justify-between">
+          <Link to={`/books/${book.id}`}>
+            <ButtonBorderPurple className="text-sm p-3 px-8">
+              Ver detalles
+            </ButtonBorderPurple>
+          </Link>
           <p className="text-sm flex flex-col items-end justify-center leading-4">
             Precio:{" "}
             <span className="text-lg font-bold text-emerald-400">

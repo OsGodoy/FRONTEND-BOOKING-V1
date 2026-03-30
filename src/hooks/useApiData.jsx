@@ -24,6 +24,7 @@ export const useApiData = (filters = {}) => {
     authors: authorsQuery.data ?? [],
     genres: genresQuery.data ?? [],
     isLoading: booksQuery.isLoading || authorsQuery.isLoading,
+    isError: booksQuery.isError || authorsQuery.isError,
     error: booksQuery.error || authorsQuery.error,
   };
 };

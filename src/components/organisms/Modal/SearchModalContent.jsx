@@ -3,6 +3,7 @@ import { useApiData } from "../../../hooks/useApiData";
 import { UlContainerGrid } from "../../atoms/UlContainer";
 import { FilterContext } from "../../../contexts/FilterContext";
 import { SearchModalContext } from "../../../contexts/SearchModalContext";
+import { ButtonBorderPurple } from "../../atoms/Buttons";
 
 const SearchModalContent = () => {
   const { setIsFilters } = useContext(FilterContext);
@@ -13,7 +14,7 @@ const SearchModalContent = () => {
     authors = [],
     genres = [],
     isLoading,
-    error,
+    isError,
   } = useApiData();
 
   const getRandomItems = (books, authors, genres, limit = 5) => {
@@ -35,12 +36,12 @@ const SearchModalContent = () => {
   return (
     <UlContainerGrid className="flex flex-row">
       {isLoading && <li>Cargando...</li>}
-      {error && <li>Error</li>}
+      {isError && <li>Error</li>}
 
       {items.map((item) => (
-        <li
+        <ButtonBorderPurple
           key={`${item.type}-${item.id}`}
-          className="text-purple-500 text-xs w-fit border px-2 py-1 rounded leading-3.5"
+          className="text-xs w-fit leading-3.5"
           onClick={() => {
             setIsFilters(() => {
               if (item.type === "author") {
@@ -68,7 +69,7 @@ const SearchModalContent = () => {
             </h3>
           )}
           {item.type === "genre" && <h3>{item.name}</h3>}
-        </li>
+        </ButtonBorderPurple>
       ))}
     </UlContainerGrid>
   );

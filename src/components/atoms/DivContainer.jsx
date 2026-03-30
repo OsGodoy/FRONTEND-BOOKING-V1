@@ -9,6 +9,17 @@ export const DivContainerCenter = ({ children, className = "", ...props }) => {
   );
 };
 
+export const DivContainerBetween = ({ children, className = "", ...props }) => {
+  return (
+    <div
+      className={`flex-1 flex items-center justify-between w-full ${className}`}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
+
 export const DivContainerStart = ({ children, className = "", ...props }) => {
   return (
     <div

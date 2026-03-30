@@ -5,15 +5,17 @@ import { UlContainerCenter } from "../atoms/UlContainer";
 import { SidebarContext } from "../../contexts/SidebarContext";
 
 const AuthorsList = () => {
-  const { authors, isLoading, error } = useApiData();
+  const { authors, isLoading, isError } = useApiData();
   const { setIsFilters } = useContext(FilterContext);
   const { setIsSidebarOpen } = useContext(SidebarContext);
 
   return (
     <UlContainerCenter className="p-2 gap-4 text-neutral-400 text-sm">
       {isLoading && <li>Cargando...</li>}
-      {error && <li>Error</li>}
-      {!isLoading && !error && authors.length === 0 && <li>No hay autores</li>}
+      {isError && <li>Error</li>}
+      {!isLoading && !isError && authors.length === 0 && (
+        <li>No hay autores</li>
+      )}
 
       {authors.map((author) => (
         <li

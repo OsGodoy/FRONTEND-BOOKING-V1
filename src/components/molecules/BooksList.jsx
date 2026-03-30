@@ -8,10 +8,10 @@ import { FilterContext } from "../../contexts/FilterContext";
 
 const BooksList = () => {
   const { isFilters } = useContext(FilterContext);
-  const { books, isLoading, error } = useApiData(isFilters);
+  const { books, isLoading, isError } = useApiData(isFilters);
 
   if (isLoading) return <Loading />;
-  if (error) return <ErrorPage />;
+  if (isError) return <ErrorPage />;
   if (books.length === 0)
     return <p className="text-amber-400">Listado vacío...</p>;
 

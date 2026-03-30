@@ -3,6 +3,7 @@ import { FilterContext } from "../../contexts/FilterContext";
 import { DivContainerStart } from "../atoms/DivContainer";
 import { useApiData } from "../../hooks/useApiData";
 import { CircleX } from "lucide-react";
+import { ButtonBorderAmber } from "../../components/atoms/Buttons";
 
 const FilterInfo = () => {
   const { initialState, isFilters, setIsFilters } = useContext(FilterContext);
@@ -21,7 +22,7 @@ const FilterInfo = () => {
 
   return (
     <DivContainerStart className="px-4 pb-3">
-      <div className="text-xs text-amber-400 bg-amber-400/10 border border-amber-400/40 p-1 rounded flex items-center justify-center gap-1">
+      <ButtonBorderAmber className="text-xs flex items-center justify-center gap-1">
         {selectedAuthor && (
           <span>
             Autor: {selectedAuthor.name} {selectedAuthor.lastname}
@@ -35,7 +36,7 @@ const FilterInfo = () => {
           }}
           className="size-4 stroke-[1.5]"
         />
-      </div>
+      </ButtonBorderAmber>
     </DivContainerStart>
   );
 };

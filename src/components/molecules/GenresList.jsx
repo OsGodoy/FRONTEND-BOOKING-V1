@@ -5,15 +5,15 @@ import { useApiData } from "../../hooks/useApiData";
 import { UlContainerCenter } from "../atoms/UlContainer";
 
 const GenresList = () => {
-  const { genres = [], isLoading, error } = useApiData();
+  const { genres = [], isLoading, isError } = useApiData();
   const { setIsFilters } = useContext(FilterContext);
   const { setIsSidebarOpen } = useContext(SidebarContext);
 
   return (
     <UlContainerCenter className="p-2 gap-4 text-neutral-400 text-sm">
       {isLoading && <li>Cargando...</li>}
-      {error && <li>Error</li>}
-      {!isLoading && !error && genres.length === 0 && <li>No hay géneros</li>}
+      {isError && <li>Error</li>}
+      {!isLoading && !isError && genres.length === 0 && <li>No hay géneros</li>}
 
       {genres.map((genre) => (
         <li

@@ -1,3 +1,5 @@
+import { twMerge } from "tailwind-merge";
+
 export const DivContainerCenter = ({ children, className = "", ...props }) => {
   return (
     <div
@@ -31,6 +33,17 @@ export const DivContainerStart = ({ children, className = "", ...props }) => {
   );
 };
 
+export const DivContainerEnd = ({ children, className = "", ...props }) => {
+  return (
+    <div
+      className={`flex-1 flex flex-col items-center justify-end w-full ${className}`}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
+
 export const DivContainerGrid = ({ children, className = "", ...props }) => {
   return (
     <div
@@ -45,7 +58,10 @@ export const DivContainerGrid = ({ children, className = "", ...props }) => {
 export const DivContainerModal = ({ children, className = "", ...props }) => {
   return (
     <div
-      className={`flex items-center justify-center p-4 w-full sm:w-72 md:w-80 xl:w-72 2xl:w-80 bg-neutral-950 border rounded-xl border-neutral-800 ${className}`}
+      className={twMerge(
+        "flex items-center justify-center p-4 w-full sm:w-72 md:w-80 xl:w-72 2xl:w-80 bg-neutral-950 border rounded-xl border-neutral-800",
+        className,
+      )}
       {...props}
     >
       {children}

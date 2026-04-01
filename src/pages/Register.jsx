@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   DivContainerCenter,
   DivContainerModal,
@@ -9,18 +9,35 @@ import {
   ButtonBorderPurple,
   ButtonBorderNeutral,
 } from "../components/atoms/Buttons";
-import { useRegister } from "../hooks/useAuthData";
+import { useAuth, useRegister } from "../hooks/useAuthData";
+import Loading from "../components/atoms/Loading";
+import { useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import LoaderPage from "./Loader";
 
 const RegisterPage = () => {
-  const { mutate, isPending, error } = useRegister();
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const { mutate, isPending, isError } = useRegister();
+  const { user, isAuthenticated, isLoading } = useAuth();
 
-  const handleRegister = (data) => {
-    mutate(data, {
-      onSuccess: () => {
-        console.log("Usuario creado");
+  const handleRegister = (formData) => {
+    mutate(formData, {
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(["authUser"]);
       },
     });
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
+
+  if (isLoading) return <LoaderPage />;
+
+  if (isPending) return <Loading children={"Creando cuenta"} />;
 
   return (
     <DivContainerCenter>

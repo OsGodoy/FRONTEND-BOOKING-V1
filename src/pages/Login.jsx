@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import {
   DivContainerCenter,
   DivContainerModal,
@@ -9,21 +9,22 @@ import {
   ButtonBorderAmber,
   ButtonBorderNeutral,
 } from "../components/atoms/Buttons";
-import {useLogin} from "../hooks/useAuthData"
+import { useAuth, useLogin } from "../hooks/useAuthData";
+import Loading from "../components/atoms/Loading";
 
 const LoginPage = () => {
-  const { mutate, isPending, error } = useLogin();
+  const { mutate, isPending, isError } = useLogin();
+  const { user, isAuthenticated, isLoading } = useAuth();
 
-  const handleLogin = (data) => {
-    mutate(data, {
-      onSuccess: () => {
-        console.log("Login exitoso");
-      },
-      onError: (err) => {
-        console.log(err.response?.data?.message);
-      },
-    });
+  const handleLogin = (formData) => {
+    mutate(formData);
   };
+
+  if (isLoading) return <Loading />;
+
+  if (isPending) return <Loading children="Iniciando sesión" />;
+
+  if (isAuthenticated) return <Navigate to="/" />;
 
   return (
     <DivContainerCenter>

@@ -7,26 +7,26 @@ import { X } from "lucide-react";
 import SidebarContent from "./SidebarContent";
 
 const Sidebar = () => {
-  const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
+  const { isSidebar, setIsSidebar } = useContext(SidebarContext);
 
   const ref = useRef(null);
-  useOnClickOutside(ref, () => setIsSidebarOpen(false));
+  useOnClickOutside(ref, () => setIsSidebar(false));
 
   return (
-    <RemoveScroll enabled={isSidebarOpen}>
+    <RemoveScroll enabled={isSidebar}>
       <DivContainerCenter
         className={`fixed inset-0 bg-neutral-950/80 transition-opacity z-50
-        ${isSidebarOpen ? "opacity-100 pointer-events-auto duration-200" : "opacity-0 pointer-events-none duration-700"}
+        ${isSidebar ? "opacity-100 pointer-events-auto duration-200" : "opacity-0 pointer-events-none duration-700"}
         `}
       >
         <aside
           ref={ref}
-          className={`text-neutral-500 bg-neutral-800 border-l border-b border-neutral-700 h-full w-3/4 fixed top-0 right-0 transition-transform flex flex-col ${isSidebarOpen ? "translate-x-0 duration-500" : "translate-x-full duration-300"}`}
+          className={`text-neutral-500 bg-neutral-800 border-l border-b border-neutral-700 h-full w-3/4 fixed top-0 right-0 transition-transform flex flex-col ${isSidebar ? "translate-x-0 duration-500" : "translate-x-full duration-300"}`}
         >
           <h3 className="text-lg p-4 border-b mb-2 border-neutral-700 flex items-center justify-between w-full">
             Menú
             <span
-              onClick={() => setIsSidebarOpen(false)}
+              onClick={() => setIsSidebar(false)}
               className="cursor-pointer"
             >
               <X className="stroke-1 text-amber-400" />

@@ -1,3 +1,5 @@
+import { twMerge } from "tailwind-merge";
+
 export const UlContainerCenter = ({ children, className = "", ...props }) => {
   return (
     <ul
@@ -12,7 +14,7 @@ export const UlContainerCenter = ({ children, className = "", ...props }) => {
 export const LiContainer = ({ children, className = "", ...props }) => {
   return (
     <li
-      className={`items-center justify-between p-4 w-full ${className}`}
+      className={twMerge("items-center justify-between p-4 w-full", className)}
       {...props}
     >
       {children}

@@ -3,17 +3,18 @@ import { DivContainerCenter } from "../../atoms/DivContainer";
 import { useContext, useRef, useState } from "react";
 import { useOnClickOutside } from "../../../hooks/useOnClickOutside";
 import { Search, X } from "lucide-react";
-import { SearchModalContext } from "../../../contexts/SearchModalContext";
-import SearchModalContent from "./SearchModalContent";
+import { SearchTopDrawerContext } from "../../../contexts/SearchTopDrawerContext";
+import SearchTopDrawerContent from "./SearchTopDrawerContent";
 import { FilterContext } from "../../../contexts/FilterContext";
 
-const SearchModal = () => {
+const SearchTopDrawer = () => {
   const { setIsFilters } = useContext(FilterContext);
-  const { isSearchModalOpen, setIsSearchModalOpen } =
-    useContext(SearchModalContext);
+  const { isSearchTopDrawer, setIsSearchTopDrawer } = useContext(
+    SearchTopDrawerContext,
+  );
 
   const ref = useRef(null);
-  useOnClickOutside(ref, () => setIsSearchModalOpen(false));
+  useOnClickOutside(ref, () => setIsSearchTopDrawer(false));
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -30,26 +31,26 @@ const SearchModal = () => {
       return prev;
     });
 
-    setIsSearchModalOpen(false);
+    setIsSearchTopDrawer(false);
   };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && searchValue.trim()) {
       handleSearch();
-      setIsSearchModalOpen(false);
+      setIsSearchTopDrawer(false);
     }
   };
 
   return (
-    <RemoveScroll enabled={isSearchModalOpen}>
+    <RemoveScroll enabled={isSearchTopDrawer}>
       <DivContainerCenter
         className={`fixed inset-0 transition-opacity z-50
-        ${isSearchModalOpen ? "pointer-events-auto duration-200" : "pointer-events-none duration-700"}
+        ${isSearchTopDrawer ? "pointer-events-auto duration-200" : "pointer-events-none duration-700"}
         `}
       >
         <div
           ref={ref}
-          className={`text-neutral-500 bg-neutral-800 border-x border-b border-neutral-700 p-3 w-full fixed top-0 transition-transform flex flex-col ${isSearchModalOpen ? "translate-y-0 duration-500" : "-translate-y-full duration-300"}`}
+          className={`text-neutral-500 bg-neutral-800 border-x border-b border-neutral-700 p-3 w-full fixed top-0 transition-transform flex flex-col ${isSearchTopDrawer ? "translate-y-0 duration-500" : "-translate-y-full duration-300"}`}
         >
           <section className="flex items-center justify-between w-full pb-3 border-b border-neutral-700">
             <input
@@ -66,7 +67,7 @@ const SearchModal = () => {
               </button>
             ) : (
               <button
-                onClick={() => setIsSearchModalOpen(false)}
+                onClick={() => setIsSearchTopDrawer(false)}
                 className="cursor-pointer ml-2"
               >
                 <X className="stroke-1 text-amber-400" />
@@ -74,7 +75,7 @@ const SearchModal = () => {
             )}
           </section>
           <div className="text-center pt-2">
-            <SearchModalContent />
+            <SearchTopDrawerContent />
           </div>
         </div>
       </DivContainerCenter>
@@ -82,4 +83,4 @@ const SearchModal = () => {
   );
 };
 
-export default SearchModal;
+export default SearchTopDrawer;

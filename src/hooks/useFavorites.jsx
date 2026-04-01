@@ -6,14 +6,15 @@ import {
   addLocalFavorite,
   removeLocalFavorite,
 } from "../utils/favoritesLocalStore";
-import { useAuthStore } from "../store/authStore";
+import { useAuth } from "./useAuthData";
 
-// 📥 GET favoritos
 export const useFavorites = () => {
-  const user = useAuthStore((state) => state.user);
+  const queryClient = useQueryClient();
+  const user = queryClient.getQueryData(["authUser"]);
 
   return useQuery({
     queryKey: ["favorites", user?.id],
+
     queryFn: async () => {
       if (!user) {
         return getLocalFavorites().map((id) => ({ id }));
@@ -25,10 +26,9 @@ export const useFavorites = () => {
   });
 };
 
-// ➕ ADD favorito
 export const useAddFavorite = () => {
   const queryClient = useQueryClient();
-  const user = useAuthStore((state) => state.user);
+  const { user } = useAuth();
 
   return useMutation({
     mutationFn: async (bookId) => {
@@ -41,7 +41,7 @@ export const useAddFavorite = () => {
     },
 
     onMutate: async (bookId) => {
-      await queryClient.cancelQueries(["favorites"]);
+      await queryClient.cancelQueries({ queryKey: ["favorites"] });
 
       const previous = queryClient.getQueryData(["favorites", user?.id]);
 
@@ -58,15 +58,14 @@ export const useAddFavorite = () => {
     },
 
     onSettled: () => {
-      queryClient.invalidateQueries(["favorites"]);
+      queryClient.invalidateQueries({ queryKey: ["favorites"] });
     },
   });
 };
 
-// ❌ REMOVE favorito
 export const useRemoveFavorite = () => {
   const queryClient = useQueryClient();
-  const user = useAuthStore((state) => state.user);
+  const { user } = useAuth();
 
   return useMutation({
     mutationFn: async (bookId) => {
@@ -79,7 +78,7 @@ export const useRemoveFavorite = () => {
     },
 
     onMutate: async (bookId) => {
-      await queryClient.cancelQueries(["favorites"]);
+      await queryClient.cancelQueries({ queryKey: ["favorites"] });
 
       const previous = queryClient.getQueryData(["favorites", user?.id]);
 
@@ -95,7 +94,7 @@ export const useRemoveFavorite = () => {
     },
 
     onSettled: () => {
-      queryClient.invalidateQueries(["favorites"]);
+      queryClient.invalidateQueries({ queryKey: ["favorites"] });
     },
   });
 };

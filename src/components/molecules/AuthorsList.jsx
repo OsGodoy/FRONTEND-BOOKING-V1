@@ -7,7 +7,7 @@ import { SidebarContext } from "../../contexts/SidebarContext";
 const AuthorsList = () => {
   const { authors, isLoading, isError } = useApiData();
   const { setIsFilters } = useContext(FilterContext);
-  const { setIsSidebarOpen } = useContext(SidebarContext);
+  const { setIsSidebar } = useContext(SidebarContext);
 
   return (
     <UlContainerCenter className="p-2 gap-4 text-neutral-400 text-sm">
@@ -29,7 +29,7 @@ const AuthorsList = () => {
 
               return { author: author.id, genre: null, search: "" };
             }),
-              setIsSidebarOpen(false));
+              setIsSidebar(false));
           }}
         >
           <h3>

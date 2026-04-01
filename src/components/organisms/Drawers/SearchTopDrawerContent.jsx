@@ -2,12 +2,12 @@ import { useContext, useMemo } from "react";
 import { useApiData } from "../../../hooks/useApiData";
 import { UlContainerGrid } from "../../atoms/UlContainer";
 import { FilterContext } from "../../../contexts/FilterContext";
-import { SearchModalContext } from "../../../contexts/SearchModalContext";
+import { SearchTopDrawerContext } from "../../../contexts/SearchTopDrawerContext";
 import { ButtonBorderPurple } from "../../atoms/Buttons";
 
-const SearchModalContent = () => {
+const SearchTopDrawerContent = () => {
   const { setIsFilters } = useContext(FilterContext);
-  const { setIsSearchModalOpen } = useContext(SearchModalContext);
+  const { setIsSearchTopDrawer } = useContext(SearchTopDrawerContext);
 
   const {
     books = [],
@@ -59,7 +59,7 @@ const SearchModalContent = () => {
               return {};
             });
 
-            setIsSearchModalOpen(false);
+            setIsSearchTopDrawer(false);
           }}
         >
           {item.type === "book" && <h3>{item.title}</h3>}
@@ -75,4 +75,4 @@ const SearchModalContent = () => {
   );
 };
 
-export default SearchModalContent;
+export default SearchTopDrawerContent;

@@ -3,8 +3,8 @@ import { createContext, useState } from "react";
 const SidebarContext = createContext();
 
 const SidebarProvider = ({ children }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const values = { isSidebarOpen, setIsSidebarOpen };
+  const [isSidebar, setIsSidebar] = useState(false);
+  const values = { isSidebar, setIsSidebar };
   return (
     <SidebarContext.Provider value={values}>{children}</SidebarContext.Provider>
   );

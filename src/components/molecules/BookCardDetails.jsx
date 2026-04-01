@@ -3,6 +3,7 @@ import Card from "../atoms/Card";
 import { DivContainerBetween, DivContainerCenter } from "../atoms/DivContainer";
 import { ImageOff } from "lucide-react";
 import BookCover from "./BookCover";
+import FavoriteButton from "./FavoriteButton";
 
 const BookCardDetails = ({ book }) => {
   return (
@@ -28,8 +29,11 @@ const BookCardDetails = ({ book }) => {
         </DivContainerCenter>
 
         <Card className="text-neutral-400 my-2">
-          <Card.Header className="flex-2">
+          <Card.Header className="flex-2 relative">
             <BookCover book={book} />
+            <div className="absolute top-3 right-3">
+              <FavoriteButton bookId={book.id} />
+            </div>
           </Card.Header>
 
           <Card.Content className="flex-12 text-sm overflow-y-scroll">

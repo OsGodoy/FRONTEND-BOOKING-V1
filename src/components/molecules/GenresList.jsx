@@ -7,7 +7,7 @@ import { UlContainerCenter } from "../atoms/UlContainer";
 const GenresList = () => {
   const { genres = [], isLoading, isError } = useApiData();
   const { setIsFilters } = useContext(FilterContext);
-  const { setIsSidebarOpen } = useContext(SidebarContext);
+  const { setIsSidebar } = useContext(SidebarContext);
 
   return (
     <UlContainerCenter className="p-2 gap-4 text-neutral-400 text-sm">
@@ -27,7 +27,7 @@ const GenresList = () => {
 
               return { author: null, genre: genre.id, search: "" };
             }),
-              setIsSidebarOpen(false));
+              setIsSidebar(false));
           }}
         >
           <h3>{genre.name}</h3>

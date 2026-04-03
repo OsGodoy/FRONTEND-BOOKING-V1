@@ -40,9 +40,10 @@ const LoginPage = () => {
         to="/"
         className="flex items-center justify-center w-full gap-2 text-5xl font-bold text-purple-500 py-6"
       >
-        booking{" "}
-        <span>
-          <Crown className="size-12 text-amber-400 fill-amber-400" />
+        book's
+        <span className="flex items-center text-amber-400">
+          king
+          <Crown className="size-11 fill-amber-400" />
         </span>{" "}
       </Link>
       <DivContainerModal className="flex-col py-5">

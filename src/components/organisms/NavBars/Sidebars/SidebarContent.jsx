@@ -1,20 +1,21 @@
 import { ChevronDown } from "lucide-react";
-import { LiContainer, UlContainerCenter } from "../../atoms/UlContainer";
+import { LiContainer, UlContainerCenter } from "../../../atoms/UlContainer";
 import { useContext, useEffect, useState } from "react";
-import AuthorsList from "../../molecules/AuthorsList";
-import { SidebarContext } from "../../../contexts/SidebarContext";
+import AuthorsList from "../../../molecules/AuthorsList";
+import { SidebarContext } from "../../../../contexts/SidebarContext";
 
-import GenresList from "../../molecules/GenresList";
+import GenresList from "../../../molecules/GenresList";
+import { Link } from "react-router-dom";
 
 const SidebarContent = () => {
   const [isActive, setIsActive] = useState(null);
-  const { isSidebarOpen } = useContext(SidebarContext);
+  const { isSidebar } = useContext(SidebarContext);
 
   useEffect(() => {
-    if (!isSidebarOpen) {
+    if (!isSidebar) {
       setIsActive(null);
     }
-  }, [isSidebarOpen]);
+  }, [isSidebar]);
 
   const items = [
     {
@@ -56,7 +57,7 @@ const SidebarContent = () => {
               ${isOpen ? "max-h-80 opacity-100 duration-500" : "max-h-0 opacity-0 duration-300"}
               `}
             >
-              {item.content}
+              <Link to="/">{item.content}</Link>
             </div>
           </div>
         );

@@ -7,6 +7,10 @@ export const getBooks = async (filters = {}) => {
   if (filters.genre) params.append("genre", filters.genre);
   if (filters.search) params.append("search", filters.search);
 
+  if (filters.ids?.length) {
+    params.append("ids", filters.ids.join(","));
+  }
+
   const { data } = await api.get(`/books?${params.toString()}`);
 
   return data.data.books;

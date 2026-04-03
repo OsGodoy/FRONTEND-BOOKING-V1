@@ -1,8 +1,8 @@
 import { RemoveScroll } from "react-remove-scroll";
-import { DivContainerCenter } from "../../atoms/DivContainer";
+import { DivContainerCenter } from "../../../atoms/DivContainer";
 import { useContext, useRef } from "react";
-import { SidebarContext } from "../../../contexts/SidebarContext";
-import { useOnClickOutside } from "../../../hooks/useOnClickOutside";
+import { SidebarContext } from "../../../../contexts/SidebarContext";
+import { useOnClickOutside } from "../../../../hooks/useOnClickOutside";
 import { X } from "lucide-react";
 import SidebarContent from "./SidebarContent";
 

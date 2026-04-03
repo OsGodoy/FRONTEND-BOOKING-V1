@@ -1,25 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { LiContainer, UlContainerCenter } from "../../atoms/UlContainer";
 import { LogOut, Settings } from "lucide-react";
-import { useAuth, useLogout } from "../../../hooks/useAuthData";
-import Loading from "../../atoms/Loading";
-import { UserMenuContext } from "../../../contexts/UserMenuContext";
-import { useContext } from "react";
 
 const UserMenuContent = () => {
-  const navigate = useNavigate();
-  const { mutate: logoutUser } = useLogout();
-  const { setIsUserMenu } = useContext(UserMenuContext);
-
-  const handleLogout = () => {
-    logoutUser(undefined, {
-      onSuccess: () => {
-        setIsUserMenu(false);
-        navigate("/");
-      },
-    });
-  };
-
   const userMenuList = [
     {
       id: "perfil",

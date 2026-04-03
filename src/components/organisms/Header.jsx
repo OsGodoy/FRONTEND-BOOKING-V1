@@ -2,7 +2,6 @@ import { Crown, Menu, Search, SquareUserRound } from "lucide-react";
 import { useContext } from "react";
 import { SidebarContext } from "../../contexts/SidebarContext";
 import { DivContainerEnd } from "../atoms/DivContainer";
-import { SearchTopDrawerContext } from "../../contexts/SearchTopDrawerContext";
 import { useAuth } from "../../hooks/useAuthData";
 import { ButtonBorderPurple } from "../atoms/Buttons";
 import UserMenu from "./Menus/UserMenu";
@@ -11,9 +10,6 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const { user, isAuthenticated, isLoading } = useAuth();
   const { isSidebar, setIsSidebar } = useContext(SidebarContext);
-  const { isSearchTopDrawer, setIsSearchTopDrawer } = useContext(
-    SearchTopDrawerContext,
-  );
 
   return (
     <div className="sticky top-0 w-full p-4 mb-4 flex items-center justify-between bg-neutral-900 border-b border-neutral-800 z-40">
@@ -21,9 +17,9 @@ const Header = () => {
         to="/"
         className="flex flex-1 items-center justify-start gap-1 text-2xl sm:text-4xl font-bold text-purple-500"
       >
-        booking{" "}
-        <span>
-          <Crown className="sm:size-8 text-amber-400 fill-amber-400" />
+        book's
+        <span className="flex items-center text-amber-400">
+          king <Crown className="sm:size-8 fill-amber-400" />
         </span>{" "}
       </Link>
       <DivContainerEnd className="flex-row flex-1 gap-3 text-neutral-500">
@@ -37,12 +33,6 @@ const Header = () => {
           </Link>
         )}
 
-        <Search
-          onClick={() => {
-            setIsSearchTopDrawer(!isSearchTopDrawer);
-          }}
-          className="size-7 stroke-[1.5]"
-        />
         <Menu
           onClick={() => {
             setIsSidebar(!isSidebar);

@@ -21,12 +21,16 @@ const BookCard = ({ book }) => {
           <p>
             <span className="font-semibold">
               {book.authors
-                .map((a) => `${a.name} ${a.lastname || ""}`.trim())
+                .map((author) =>
+                  `${author.name} ${author.lastname || ""}`.trim(),
+                )
                 .join(", ")}
             </span>
           </p>
           <div className="text-sm">
-            <p>{book.genres.map((g) => `${g.name}`.trim()).join(", ")}</p>
+            <p>
+              {book.genres.map((genre) => `${genre.name}`.trim()).join(", ")}
+            </p>
             <p className="text-neutral-500">En stock: {book.stock}</p>
           </div>
         </Card.Content>

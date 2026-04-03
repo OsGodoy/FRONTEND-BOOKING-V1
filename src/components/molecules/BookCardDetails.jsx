@@ -50,7 +50,7 @@ const BookCardDetails = ({ book }) => {
           </p>
         </DivContainerBetween>
         <ButtonBorderEmerald className="w-full my-2 font-semibold text-xl">
-          COMPRAR
+          AGREGAR AL CARRITO
         </ButtonBorderEmerald>
       </>
     )

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { SearchTopDrawerContext } from "../contexts/SearchTopDrawerContext";
 import { useFavorites } from "./useFavorites";
 import { Heart, House, Search, ShoppingCart } from "lucide-react";
+import { useCart } from "./useCart";
 
 export const useBottomNav = () => {
   const { isSearchTopDrawer, setIsSearchTopDrawer } = useContext(
@@ -9,6 +10,8 @@ export const useBottomNav = () => {
   );
 
   const { data: favorites = [] } = useFavorites();
+
+  const { data: cart = [] } = useCart();
 
   const toggleSearch = () => {
     setIsSearchTopDrawer(!isSearchTopDrawer);
@@ -18,6 +21,7 @@ export const useBottomNav = () => {
     {
       to: "/cart",
       icon: ShoppingCart,
+      badge: cart.length,
     },
     {
       to: "/",

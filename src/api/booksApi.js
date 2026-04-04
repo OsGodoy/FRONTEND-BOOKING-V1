@@ -13,15 +13,15 @@ export const getBooks = async (filters = {}) => {
 
   const { data } = await api.get(`/books?${params.toString()}`);
 
-  return data.data.books;
+  return data.data;
 };
 
 export const getBookById = async (id) => {
   const { data } = await api.get(`/books/${id}`);
-  return data.data.book;
+  return data.data;
 };
 
 export const createBook = async (book) => {
   const { data } = await api.post("/books", book);
-  return data.data.books;
+  return data.data;
 };

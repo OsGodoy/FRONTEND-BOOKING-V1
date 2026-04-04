@@ -8,16 +8,19 @@ export const useLogin = () => {
   return useMutation({
     mutationFn: login,
     onSuccess: async () => {
-      queryClient.removeQueries({ queryKey: ["authUser"] });
-
-      await queryClient.refetchQueries({ queryKey: ["authUser"] });
+      await queryClient.invalidateQueries({ queryKey: ["authUser"] });
     },
   });
 };
 
 export const useRegister = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: register,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["authUser"] });
+    },
   });
 };
 
@@ -28,7 +31,7 @@ export const useLogout = () => {
     mutationFn: logout,
 
     onSuccess: () => {
-      queryClient.setQueryData(["authUser"], null);
+      queryClient.clear();
     },
   });
 };
@@ -36,10 +39,7 @@ export const useLogout = () => {
 export const useAuth = () => {
   const query = useQuery({
     queryKey: ["authUser"],
-    queryFn: async () => {
-      const data = await getMe();
-      return data?.data?.user ?? null;
-    },
+    queryFn: getMe,
     retry: false,
     refetchOnWindowFocus: false,
     staleTime: Infinity,

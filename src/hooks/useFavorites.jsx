@@ -1,12 +1,14 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import api from "../api/axios";
 
 import {
   getLocalFavorites,
   addLocalFavorite,
   removeLocalFavorite,
 } from "../utils/favoritesLocalStore";
+
 import { useAuth } from "./useAuthData";
+
+import { getFavorites, addFavorite, removeFavorite } from "../api/favoritesApi";
 
 export const useFavorites = () => {
   const { user } = useAuth();
@@ -14,13 +16,12 @@ export const useFavorites = () => {
   return useQuery({
     queryKey: ["favorites", user?.id],
 
-    queryFn: async () => {
+    queryFn: () => {
       if (!user) {
         return getLocalFavorites().map((id) => ({ id }));
       }
 
-      const { data } = await api.get("/favorites");
-      return data;
+      return getFavorites();
     },
   });
 };
@@ -30,13 +31,13 @@ export const useAddFavorite = () => {
   const { user } = useAuth();
 
   return useMutation({
-    mutationFn: async (bookId) => {
+    mutationFn: (bookId) => {
       if (!user) {
         addLocalFavorite(bookId);
-        return;
+        return Promise.resolve();
       }
 
-      return api.post(`/favorites/${bookId}`);
+      return addFavorite(bookId);
     },
 
     onMutate: async (bookId) => {
@@ -47,9 +48,7 @@ export const useAddFavorite = () => {
       const previous = queryClient.getQueryData(["favorites", user?.id]);
 
       queryClient.setQueryData(["favorites", user?.id], (old = []) => {
-        // evitar duplicados 🔥
         if (old.some((fav) => fav.id === bookId)) return old;
-
         return [...old, { id: bookId }];
       });
 
@@ -75,13 +74,13 @@ export const useRemoveFavorite = () => {
   const { user } = useAuth();
 
   return useMutation({
-    mutationFn: async (bookId) => {
+    mutationFn: (bookId) => {
       if (!user) {
         removeLocalFavorite(bookId);
-        return;
+        return Promise.resolve();
       }
 
-      return api.delete(`/favorites/${bookId}`);
+      return removeFavorite(bookId);
     },
 
     onMutate: async (bookId) => {

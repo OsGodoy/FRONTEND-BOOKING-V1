@@ -45,7 +45,11 @@ const BottomNavBar = () => {
                   <Icon />
 
                   {item.badge > 0 && (
-                    <span className="absolute -top-1 -right-3 h-5 w-5 bg-rose-500 text-white text-xs rounded-full flex items-center justify-center">
+                    <span
+                      className={`absolute -top-1 -right-3 h-5 w-5 text-xs rounded-full flex items-center justify-center
+                    ${item.to === "/cart" ? "bg-emerald-500 text-black font-semibold" : "bg-rose-500 text-white"}
+                    `}
+                    >
                       {item.badge}
                     </span>
                   )}

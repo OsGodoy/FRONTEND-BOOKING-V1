@@ -1,11 +1,28 @@
-import { ButtonBorderEmerald } from "../atoms/Buttons";
+import { Heart, ShoppingCart } from "lucide-react";
+import { useAddToCart, useCart, useRemoveFromCart } from "../../hooks/useCart";
+import {
+  useAddFavorite,
+  useFavorites,
+  useRemoveFavorite,
+} from "../../hooks/useFavorites";
+import ActionButton from "../atoms/ActionButton";
 import Card from "../atoms/Card";
 import { DivContainerBetween, DivContainerCenter } from "../atoms/DivContainer";
-import { ImageOff } from "lucide-react";
 import BookCover from "./BookCover";
-import FavoriteButton from "./FavoriteButton";
 
 const BookCardDetails = ({ book }) => {
+  const { data: favorites = [] } = useFavorites();
+  const addFavorite = useAddFavorite();
+  const removeFavorite = useRemoveFavorite();
+
+  const { data: cart = [] } = useCart();
+  const addToCart = useAddToCart();
+  const removeFromCart = useRemoveFromCart();
+
+  const isFavoriteFn = (items, id) => items.some((i) => i.id === id);
+
+  const isInCartFn = (items, id) => items.some((i) => i.id === id);
+
   return (
     book && (
       <>
@@ -32,7 +49,24 @@ const BookCardDetails = ({ book }) => {
           <Card.Header className="flex-2 relative">
             <BookCover book={book} />
             <div className="absolute top-3 right-3">
-              <FavoriteButton bookId={book.id} />
+              <ActionButton
+                itemId={book.id}
+                items={favorites}
+                addMutation={addFavorite}
+                removeMutation={removeFavorite}
+                isInListFn={isFavoriteFn}
+                icons={{
+                  toggle: (isActive, isLoading) => (
+                    <Heart
+                      className={`stroke-[1.5] transition-all ${
+                        isActive
+                          ? "fill-rose-500/50 text-rose-500 stroke-0 duration-300 active:scale-150"
+                          : "text-neutral-500"
+                      } ${isLoading ? "opacity-50" : ""}`}
+                    />
+                  ),
+                }}
+              />
             </div>
           </Card.Header>
 
@@ -40,6 +74,29 @@ const BookCardDetails = ({ book }) => {
             <span className="underline">Sobre este libro:</span> {book.details}
           </Card.Content>
         </Card>
+        <DivContainerCenter className="w-full my-2 font-semibold text-xl">
+          <ActionButton
+            itemId={book.id}
+            items={cart}
+            addMutation={addToCart}
+            removeMutation={removeFromCart}
+            isInListFn={isInCartFn}
+            icons={{
+              toggle: (isActive, isLoading) => (
+                <p
+                  className={`flex items-center justify-center w-full border rounded p-1 gap-1 transition-all ${
+                    isActive
+                      ? "text-emerald-400/90 border-emerald-400/90 bg-emerald-400/10 duration-300 active:scale-105"
+                      : "text-neutral-500 border-neutral-400/90"
+                  } ${isLoading ? "opacity-50" : ""}`}
+                >
+                  <ShoppingCart className="size-5" />{" "}
+                  {isActive ? "EN EL CARRITO" : "AGREGAR AL CARRITO"}
+                </p>
+              ),
+            }}
+          />
+        </DivContainerCenter>
         <DivContainerBetween className="text-neutral-400">
           <p>En stock: {book.stock}</p>
           <p className="text-sm flex flex-col items-end justify-center leading-3">
@@ -49,9 +106,6 @@ const BookCardDetails = ({ book }) => {
             </span>
           </p>
         </DivContainerBetween>
-        <ButtonBorderEmerald className="w-full my-2 font-semibold text-xl">
-          AGREGAR AL CARRITO
-        </ButtonBorderEmerald>
       </>
     )
   );

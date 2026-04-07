@@ -46,7 +46,7 @@ const BookCover = ({ book, variant }) => {
       )}
 
       <img
-        src={`http://localhost:5001/image?url=${encodeURIComponent(book.cover)}`}
+        src={`${import.meta.env.VITE_API_URL}/image?url=${encodeURIComponent(book.cover)}`}
         alt={book.title}
         loading="lazy"
         decoding="async"

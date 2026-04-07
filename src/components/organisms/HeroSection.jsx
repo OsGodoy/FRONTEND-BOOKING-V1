@@ -1,14 +1,16 @@
-import heroImg from "../../assets/images/hero.jpg";
+import heroImg from "../../assets/images/hero.webp";
 import heroText from "../../assets/images/heroText.png";
 import { DivContainerCenter } from "../atoms/DivContainer";
 
 const HeroSection = () => {
   return (
-    <DivContainerCenter className="relative h-100 lg:h-160 xl:h-180">
+    <DivContainerCenter className="relative h-100 lg:h-160 xl:h-180 bg-neutral-900">
       <img
         src={heroImg}
         alt="Hero"
-        className="w-full h-full object-cover object-top rounded"
+        className="w-full h-full object-cover object-top rounded opacity-0 transition-opacity duration-300"
+        onLoad={(e) => e.currentTarget.classList.remove("opacity-0")}
+        loading="eager"
       />
 
       <div className="absolute inset-0 bg-linear-to-t from-neutral-950 to-neutral-950/10" />

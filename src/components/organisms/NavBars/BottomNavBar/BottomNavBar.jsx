@@ -7,7 +7,7 @@ const BottomNavBar = () => {
 
   return (
     <div
-      className={`sticky md:hidden bottom-0 w-full flex items-center justify-between py-3 px-5 text-neutral-500 bg-neutral-800 border-t border-neutral-700 transition duration-150 z-20
+      className={`fixed md:hidden bottom-0 w-full flex items-center justify-between py-3 px-5 text-neutral-500 bg-neutral-800 border-t border-neutral-700 transition duration-150 z-20
       ${
         isSearchTopDrawer
           ? "opacity-0 pointer-events-none"

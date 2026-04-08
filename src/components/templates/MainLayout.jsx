@@ -13,7 +13,7 @@ const MainLayout = () => {
   return (
     <div
       ref={scrollRef}
-      className="min-h-dvh flex flex-col bg-neutral-950 h-screen overflow-y-scroll"
+      className="min-h-dvh flex flex-col bg-neutral-950 h-screen overflow-y-scroll pb-20"
     >
       <Header />
       <Sidebar />

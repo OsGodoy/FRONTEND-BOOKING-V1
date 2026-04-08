@@ -1,5 +1,5 @@
 import heroImg from "../../assets/images/hero.webp";
-import heroText from "../../assets/images/heroText.png";
+import heroText from "../../assets/images/heroText.webp";
 import { DivContainerCenter } from "../atoms/DivContainer";
 
 const HeroSection = () => {
@@ -19,7 +19,9 @@ const HeroSection = () => {
         <img
           src={heroText}
           alt="HeroText"
-          className="w-60 sm:w-70 md:w-80 lg:w-100 object-contain opacity-90 justify-self-end"
+          className="w-60 sm:w-70 md:w-80 lg:w-100 object-contain justify-self-end opacity-0 transition-opacity duration-300"
+          onLoad={(e) => e.currentTarget.classList.remove("opacity-0")}
+          loading="eager"
         />
       </div>
     </DivContainerCenter>

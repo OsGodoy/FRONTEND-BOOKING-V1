@@ -3,7 +3,7 @@ import { DivContainerCenter } from "./DivContainer";
 
 const ErrorPage = () => {
   return (
-    <DivContainerCenter className="text-amber-400 h-full">
+    <DivContainerCenter className="text-amber-400">
       <ServerCrash />
       <p>Ups, algo salió mal...</p>
       <p>Intenta más tarde</p>

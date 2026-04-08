@@ -17,7 +17,7 @@ const HomePage = () => {
     }
   }, [hash]);
   return (
-    <DivContainerCenter className="justify-start">
+    <DivContainerCenter className="justify-start h-full">
       <div className="w-full">
         <HeroSection />
       </div>

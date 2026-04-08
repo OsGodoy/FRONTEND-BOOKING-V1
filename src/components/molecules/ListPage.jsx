@@ -25,7 +25,7 @@ const ListPage = ({
   variant = "cart",
 }) => {
   return (
-    <DivContainerCenter className="max-w-100 md:max-w-140 lg:max-w-180">
+    <DivContainerCenter className="max-w-100 md:max-w-140 lg:max-w-180 h-full">
       <DivContainerCenter className="flex-row gap-2">
         {variant === "cart" && (
           <DivContainerModal
@@ -68,7 +68,7 @@ const ListPage = ({
           ) : (
             <UlContainerCenter className="text-neutral-400 w-full h-full justify-start">
               {list.length === 0 ? (
-                <DivContainerCenter className="text-neutral-400 text-responsive-sm">
+                <DivContainerCenter className="text-neutral-400 text-responsive-sm h-full">
                   {emptyMessage}
                   <Link to="/#books-section">
                     <ButtonBorderAmber className="mt-2 p-2">

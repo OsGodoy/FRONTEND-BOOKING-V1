@@ -40,7 +40,7 @@ const RegisterPage = () => {
   if (isPending) return <Loading children={"Creando cuenta"} />;
 
   return (
-    <DivContainerCenter className="relative max-w-360">
+    <DivContainerCenter className="relative max-w-360 h-full">
       <Link
         to="/#books-section"
         className="text-responsive-xs absolute top-5 left-0"

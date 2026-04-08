@@ -29,7 +29,7 @@ const CartList = ({ book, list }) => {
   return (
     <>
       <DivContainerModal className="flex-row p-2 lg:p-4 gap-2 rounded-lg lg:grid lg:grid-cols-2">
-        <DivContainerCenter className="relative">
+        <DivContainerCenter className="relative flex-1">
           <DivContainerCenter className="hidden lg:flex">
             <Link to={`/books/${book.id}`}>
               <BookCover book={book} variant={"cart"} />
@@ -50,7 +50,7 @@ const CartList = ({ book, list }) => {
           </div>
         </DivContainerCenter>
         <DivContainerCenter className="flex-7 lg:h-full">
-          <DivContainerCenter className="flex-row lg:flex-col">
+          <DivContainerCenter className="flex-row flex-1 lg:flex-col">
             <DivContainerCenter className="flex-4 flex-row border-l lg:border lg:rounded border-neutral-800 px-4">
               <DivContainerStart className="lg:py-2 lg:h-full">
                 <Link to={`/books/${book.id}`}>
@@ -70,7 +70,7 @@ const CartList = ({ book, list }) => {
                 </DivContainerStart>
               </DivContainerStart>
             </DivContainerCenter>
-            <DivContainerCenter className="flex-row pr-2 lg:pr-4 lg:justify-end lg:my-2">
+            <DivContainerCenter className="flex-row flex-1 pr-2 lg:pr-4 lg:justify-end lg:my-2">
               <ButtonCart
                 disabled={quantity === 1}
                 onClick={() => decreaseFromCart.mutate(book.id)}

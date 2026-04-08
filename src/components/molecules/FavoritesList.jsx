@@ -22,7 +22,7 @@ const FavoritesList = ({ book, list, cart }) => {
   return (
     <>
       <DivContainerModal className="flex-row p-2 lg:p-4 gap-2 rounded-lg lg:grid lg:grid-cols-2">
-        <DivContainerCenter className="relative h-full">
+        <DivContainerCenter className="relative h-full flex-1">
           <DivContainerCenter className="hidden lg:flex">
             <Link to={`/books/${book.id}`}>
               <BookCover book={book} variant={"cart"} />
@@ -64,7 +64,7 @@ const FavoritesList = ({ book, list, cart }) => {
               {book.details}
             </div>
           </DivContainerStart>
-          <DivContainerCenter className="lg:absolute top-2 right-2 max-w-8">
+          <DivContainerCenter className="lg:absolute top-2 right-2 max-w-8 pl-2 lg:p-0">
             <ActionButton
               itemId={book.id}
               items={cart}

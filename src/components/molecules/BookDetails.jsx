@@ -41,7 +41,7 @@ const BookDetails = () => {
     <DivContainerCenter className="text-white max-w-360 px-4">
       <Link
         to="/"
-        className="text-responsive-xs mb-6 mt-2 sticky top-18 z-40 bg-neutral-950 self-start rounded shadow-lg shadow-neutral-950"
+        className="text-responsive-xs mb-6 mt-2 sticky top-20 z-40 bg-neutral-950 self-start rounded shadow-lg shadow-neutral-950"
       >
         <ButtonBorderPurple className="flex items-center justify-center">
           <span>

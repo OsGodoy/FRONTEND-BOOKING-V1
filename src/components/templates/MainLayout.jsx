@@ -8,22 +8,19 @@ import BottomNavBar from "../organisms/NavBars/BottomNavBar/BottomNavBar";
 import { useRef } from "react";
 
 const MainLayout = () => {
-  const scrollRef = useRef(null);
-
   return (
-    <div
-      ref={scrollRef}
-      className="min-h-dvh flex flex-col bg-neutral-950 h-screen overflow-y-scroll pb-20"
-    >
+    <div className="min-h-dvh flex flex-col bg-neutral-950 pb-20">
       <Header />
       <Sidebar />
       <SearchTopDrawer />
 
-      <main className="flex-1 flex items-start justify-center w-full">
-        <Outlet />
+      <main className="flex-1 flex w-full min-h-0">
+        <div className="flex-1 flex items-center justify-center min-h-0 w-full">
+          <Outlet />
+        </div>
       </main>
 
-      <ScrollToTopButton scrollRef={scrollRef} />
+      <ScrollToTopButton />
       <Footer />
       <BottomNavBar />
     </div>

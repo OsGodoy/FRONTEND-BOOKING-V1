@@ -1,24 +1,21 @@
 import { useEffect, useState } from "react";
 import { ChevronUp } from "lucide-react";
 
-const ScrollToTopButton = ({ scrollRef }) => {
+const ScrollToTopButton = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const container = scrollRef?.current;
-
-    if (!container) return;
-
     const handleScroll = () => {
-      setShow(container.scrollTop > 300);
+      setShow(window.scrollY > 300);
     };
 
-    container.addEventListener("scroll", handleScroll);
-    return () => container.removeEventListener("scroll", handleScroll);
-  }, [scrollRef]);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleClick = () => {
-    scrollRef.current.scrollTo({
+    window.scrollTo({
       top: 240,
       behavior: "smooth",
     });

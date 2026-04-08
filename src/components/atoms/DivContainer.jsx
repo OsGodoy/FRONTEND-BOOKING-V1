@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 export const DivContainerCenter = ({ children, className = "", ...props }) => {
   return (
     <div
-      className={`flex-1 flex flex-col items-center justify-center w-full ${className}`}
+      className={`flex flex-col items-center justify-center w-full ${className}`}
       {...props}
     >
       {children}
@@ -14,7 +14,7 @@ export const DivContainerCenter = ({ children, className = "", ...props }) => {
 export const DivContainerBetween = ({ children, className = "", ...props }) => {
   return (
     <div
-      className={`flex-1 flex items-center justify-between w-full ${className}`}
+      className={`flex items-center justify-between w-full ${className}`}
       {...props}
     >
       {children}
@@ -36,7 +36,7 @@ export const DivContainerStart = ({ children, className = "", ...props }) => {
 export const DivContainerEnd = ({ children, className = "", ...props }) => {
   return (
     <div
-      className={`flex-1 flex flex-col items-center justify-end w-full ${className}`}
+      className={`flex flex-col items-center justify-end w-full ${className}`}
       {...props}
     >
       {children}

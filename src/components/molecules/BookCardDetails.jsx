@@ -51,7 +51,9 @@ const BookCardDetails = ({ book }) => {
 
         <Card className="text-neutral-400 my-2 lg:flex-row lg:p-3 lg:h-full">
           <Card.Header className="flex-2 relative lg:border-b-0 lg:border-r">
-            <BookCover book={book} variant={"details"} />
+            <div className="max-w-50">
+              <BookCover book={book} variant={"details"} />
+            </div>
             <div className="absolute top-3 lg:top-0 right-3 lg:left-0 lg:w-7">
               <ActionButton
                 itemId={book.id}

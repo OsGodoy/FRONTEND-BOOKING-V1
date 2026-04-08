@@ -38,7 +38,7 @@ const Header = () => {
           </Link>
         </DivContainerStart>
         <DivContainerEnd className="flex-row flex-1 gap-2 text-neutral-500">
-          <DivContainerCenter className="hidden md:flex">
+          <DivContainerCenter className="hidden md:flex flex-1">
             <HeaderNavBar />
           </DivContainerCenter>
           {isAuthenticated ? (

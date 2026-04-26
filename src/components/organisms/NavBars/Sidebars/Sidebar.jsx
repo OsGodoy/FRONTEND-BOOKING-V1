@@ -1,0 +1,45 @@
+import { RemoveScroll } from "react-remove-scroll";
+import { DivContainerCenter } from "../../../atoms/DivContainer";
+import { useContext, useRef } from "react";
+import { SidebarContext } from "../../../../contexts/SidebarContext";
+import { useOnClickOutside } from "../../../../hooks/useOnClickOutside";
+import { X } from "lucide-react";
+import SidebarContent from "./SidebarContent";
+import { scaleFx } from "../../../../constants/styles";
+
+const Sidebar = () => {
+  const { isSidebar, setIsSidebar } = useContext(SidebarContext);
+
+  const ref = useRef(null);
+  useOnClickOutside(ref, () => setIsSidebar(false));
+
+  return (
+    <RemoveScroll enabled={isSidebar}>
+      <DivContainerCenter
+        className={`fixed inset-0 bg-neutral-950/80 transition-opacity z-50
+        ${isSidebar ? "opacity-100 pointer-events-auto duration-200" : "opacity-0 pointer-events-none duration-700"}
+        `}
+      >
+        <aside
+          ref={ref}
+          className={`text-neutral-500 bg-neutral-800 border-l border-b border-neutral-700 h-full w-2/3 sm:max-w-70 fixed top-0 left-0 transition-transform flex flex-col ${isSidebar ? "translate-x-0 duration-500" : "-translate-x-full duration-300"}`}
+        >
+          <h3 className="text-responsive-lg p-4 border-b mb-2 border-neutral-700 flex items-center justify-between w-full">
+            Menú
+            <span
+              onClick={() => setIsSidebar(false)}
+              className="cursor-pointer"
+            >
+              <X className={`stroke-1 text-amber-400 ${scaleFx("md")}`} />
+            </span>
+          </h3>
+          <div className="flex-1 overflow-y-auto">
+            <SidebarContent />
+          </div>
+        </aside>
+      </DivContainerCenter>
+    </RemoveScroll>
+  );
+};
+
+export default Sidebar;
